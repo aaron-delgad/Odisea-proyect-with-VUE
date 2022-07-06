@@ -17,6 +17,7 @@
                 <div><span class="fw--700">Costo adicional:</span> S/.{{ item.costo }}</div>
                 <div><span class="fw--700">Ultima actualización:</span> hace {{ item.updateLast }} meses</div>
               </md-card-content>
+             
             </md-card-header-text>
 
             <md-card-media md-big>
@@ -28,6 +29,14 @@
           </md-card-header>
 
           <md-card-actions>
+            <div v-if="spinnerInst">
+            <md-progress-spinner class="md-accent" :md-diameter="30" md-mode="indeterminate" ></md-progress-spinner>
+            <p>Instalando ...</p>
+            </div>
+            <div v-if="spinnerDes">
+            <md-progress-spinner class="md-accent" :md-diameter="30" md-mode="indeterminate" ></md-progress-spinner>
+            <p>Desinstalando ...</p>
+            </div>
             <md-button class="md-accent" @click="statePlugin(item.state)" v-if="item.state">Instalar Ahora</md-button>
             <md-button class="md-accent" @click="statePlugin(!item.state)" v-if="!item.state">Desactivar</md-button>
           </md-card-actions>
@@ -44,6 +53,8 @@ export default {
 
   data: function () {
     return {
+      spinnerInst: false,
+      spinnerDes: false,
       dataPlugin: [
         {
           id: "1",
@@ -72,6 +83,14 @@ export default {
   methods: {
     statePlugin(state) {
       console.log(state);
+      if(state) {
+          this.spinnerInst = true;
+      }else{
+        this.spinnerDes = true;
+      }
+      
+      
+      
     },
   }
 };
