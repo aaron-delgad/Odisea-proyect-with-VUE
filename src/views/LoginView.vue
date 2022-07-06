@@ -34,20 +34,16 @@
         <a class="underlineHover" href="#">Forgot Password?</a>
       </div>
     </div>
-   
   </div>
-  
 </template>
 
 <script>
-import axios from "axios";
-
+import { ClientesService } from "./../services/loginService.js";
 export default {
   name: "LoginView",
-  components: {  },
+  components: {},
 
   data: function () {
-    
     return {
       user: "john@mail.com",
       password: "changeme",
@@ -61,22 +57,19 @@ export default {
         email: this.user,
         password: this.password,
       };
-      axios
-        .post("https://young-sands-07814.herokuapp.com/api/auth/login", json)
-        .then((data) => {
-          console.log(data);
-          if (data.statusText === "Created") {
-            localStorage.token = data.data.access_token;
-            if (this.user === "john@mail.com") {
-              this.metasBoolean = true;
-              this.$router.push("home");
-            }else{
-              this.metasBoolean = false;
-            }
+      ClientesService.login(json).then((data) => {
+        if (data.statusText === "Created") {
+          localStorage.token = data.data.access_token;
+          if (this.user === "john@mail.com") {
+            this.metasBoolean = true;
+            this.$router.push("home");
           } else {
-            console.log("No autorizado");
+            this.metasBoolean = false;
           }
-        });
+        } else {
+          console.log("No autorizado");
+        }
+      });
     },
   },
 };

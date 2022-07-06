@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LoginView from '../views/LoginView.vue'
 import HomeView from '../views/HomeView.vue'
-import MetasView from '../views/Metas.vue'
+import PluginView from '../views/PluginView.vue'
 
 Vue.use(VueRouter)
 
@@ -15,13 +15,16 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    children: [
+      {
+        path: '/',
+        name: 'plugin',
+        component: PluginView
+      }
+    ]
   },
-  {
-    path: '/metas',
-    name: 'metas',
-    component: MetasView
-  }
+  
 ]
 
 const router = new VueRouter({
