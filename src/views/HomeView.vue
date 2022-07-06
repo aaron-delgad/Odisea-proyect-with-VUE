@@ -1,20 +1,20 @@
 <template>
   <div class="page-container">
     <md-app>
-      <md-app-toolbar class="md-pink row">
+      <md-app-toolbar style="background-color:#ff3333" class="row">
         <md-button
           class="md-icon-button col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
           @click="toggleMenu"
         >
-          <md-icon>menu</md-icon>
+          <md-icon style="color:white">menu</md-icon>
         </md-button>
-        <span class="md-title col-1 col-sm-2 col-md-2 col-lg-3 col-xl-3"
-          >Agente de Prensa</span
+        <span class="md-title col-1 col-sm-2 col-md-2 col-lg-3 col-xl-3 fw--500"
+          style="color:white">Agente de Prensa</span
         >
         <div
           class="md-toolbar-section-end col-1 col-sm-1 offset-md-3 col-md-4 offset-lg-4 col-lg-3 offset-xl-4 col-xl-3"
         >
-          <span>{{ emailUser }}</span>
+          <span style="color:white">{{ emailUser }}</span>
           <md-avatar>
             <img :src="require(`@/assets/img/${photoUser}`)" v-bind:alt="photoUser" />
           </md-avatar>
