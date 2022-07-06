@@ -14,7 +14,8 @@
                 <div>{{ item.detail }}</div>
               </md-card-content>
               <md-card-content>
-                <div>{{ item.costo }}</div>
+                <div><span class="fw--700">Costo adicional:</span> S/.{{ item.costo }}</div>
+                <div><span class="fw--700">Ultima actualización:</span> hace {{ item.updateLast }} meses</div>
               </md-card-content>
             </md-card-header-text>
 
@@ -27,8 +28,8 @@
           </md-card-header>
 
           <md-card-actions>
-            <md-button class="md-accent" @click="activarPlugin()" v-if="estadoPlugin">Instalar Ahora</md-button>
-            <md-button class="md-accent" @click="desactivarPlugin()" v-if="!estadoPlugin">Desactivar</md-button>
+            <md-button class="md-accent" @click="statePlugin(item.state)" v-if="item.state">Instalar Ahora</md-button>
+            <md-button class="md-accent" @click="statePlugin(!item.state)" v-if="!item.state">Desactivar</md-button>
           </md-card-actions>
         </md-card>
       </div>
@@ -43,33 +44,35 @@ export default {
 
   data: function () {
     return {
-      estadoPlugin: true,
       dataPlugin: [
         {
+          id: "1",
           title: "Metas",
           detail:
             "Le permitira tener mejor control en las metas de sus trabajadores",
-          costo: "Costo adicional: S/. 35.00",
+          costo: "35.00",
+          updateLast: "2",
           image: "metas.webp",
+          state: true,
           alt: "logo",
         },
         {
+          id: "2",
           title: "Reportes",
           detail: "Le permitira Tener Mayor control en sus reportes",
-          costo: "Costo adicional: S/. 25.00",
+          costo: "25.00",
+          updateLast: "1",
           image: "reporte.jpg",
+          state: false,
           alt: "logo",
         },
       ],
     };
   },
   methods: {
-    activarPlugin() {
-      this.estadoPlugin = false;
+    statePlugin(state) {
+      console.log(state);
     },
-    desactivarPlugin() {
-
-    }
   }
 };
 </script>
