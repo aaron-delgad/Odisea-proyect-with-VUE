@@ -6,15 +6,32 @@
     </h4>
     <md-divider></md-divider>
     <div class="mt-5">
-      <PluginComponent />
+      <div class="row">
+        <div
+          class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 px-4"
+        >
+          <activeMetas />
+        </div>
+         <div
+          class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 px-4"
+        >
+           <activeReport />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import PluginComponent from "./../components/PluginComponent.vue";
+import activeMetas from "./../components/plugin/Metas/activeMetas.vue";
+import activeReport from "./../components/plugin/reports/activeReport.vue";
 export default {
   name: "PluginView",
-  components: { PluginComponent },
+  components: { activeMetas, activeReport },
+  data: function () {
+    return {
+      
+    };
+  },
 };
 </script>
